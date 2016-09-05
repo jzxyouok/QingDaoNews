@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+        <title>{{title}}</title>
+        <script type="text/javascript" src="jquery-1.4.min.js"></script>
+        <script type="text/javascript" src="jquery.fancybox-1.3.4.pack.js"></script>
+        <link rel="stylesheet" href="jquery.fancybox-1.3.4.css"/>
+        <link rel="stylesheet" href="style.css"/>
+        
+        <style>
+            p{
+                padding:10px 10px 0 10px;;
+                color:#333;
+                line-height:150%;
+                {{font_setting}}
+            }
+        
+        .vote_btn{
+            margin:5px;
+            padding:0 10px;
+            height: 39px;
+            word-break:keep-all;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            background:url("vote_option_background@2x.png");
+            background-size:100% 100%;
+            line-height:39px
+        }
+        .vote_div{
+            margin:0;
+            padding-left:20px;
+            height:25px;
+            background:url("content_title_background.png");
+            background-size:100% 100%;
+            line-height:25px;
+            position:relative;
+            font-weight :bold
+            font-size:14px;
+        }
+        
+
+        
+        body.night p{{{font_setting}};}
+            </style>
+<!--        <script language="javascript">document.ontouchstart=function(){document.location="myweb:touch:start";}; document.ontouchend=function(){document.location="myweb:touch:end";}; document.ontouchmove=function(){document.location="myweb:touch:move";}</script> -->
+
+    </head>
+    <body class="{{theme}}">
+        <script type="text/javascript">
+            window.onload = function(){
+                window.location.href = "ready:///";
+            }
+            function play_video(url){
+                location.href="video:///" + url;
+            }
+            function vote_rect(){
+                var rect = document.getElementById("vote").getBoundingClientRect();
+                return '{ {' + rect.left + ',' + rect.top + '},{' + rect.width + ',' + rect.height + '} }';
+            }
+            function click_contex(id){
+                location.href="news:///" + id;
+            }
+            function click_comment(){
+                location.href="comment:///";
+            }
+            function click_ad(url){
+                location.href=url;
+            }
+            </script>
+        
+        <header>
+            {% if top_ad %}
+            <div class="adtop" style="padding:10px;"><img src="{{top_ad.image}}" width="100%" onClick="click_ad('{{top_ad.url}}')" alt="none" />
+            </div>
+            {% /if %}
+            {% if title %}
+            <h1 id="title">{{title}}</h1>
+            <span id="subtitle" class="sub-title">{{from}}</span>
+            <span id="subtitle" class="sub-title">{{time}}</span>
+            {% else %}
+            <h1 id="title">文章正在审核中，请稍后查看</h1>
+            {% /if %}
+        </header>
+        <div id="hh">
+        <div id="body_section" lang="zh">
+        <article class="content">
+            <section id = "newSize" style="-webkit-text-size-adjust:100%" ongesturestart="boxStart(event)" ongesturechange="boxChange(event)" ongestureend="boxEnd(event)">
+                {{content}}
+            </section>
+            {% if comments %}
+            <div class="pinglun">
+                <div class = "m-tt">相关评论</div>
+                {% for co in comments %}
+                <div class = "g-tex" onclick="click_comment()">
+                    <small>来自：<span style="color:#999;">{{co.author}}</span></small>
+                    <div style="font-size:14px">{{co.content}}</div>
+                </div>
+                {% /for %}
+            </div>
+            {% /if %}
+            
+            {% if bottom_ad %}
+            <div class="ads" onClick="click_ad('{{bottom_ad.url}}')" style="margin:10px;border:1px solid #ccc; background-color:#fff;">
+                <img src="{{bottom_ad.image}}" width="100%" alt="none">
+                    <h3 style="height:1em; font-size:.9em; line-height:1em;padding:5px; overflow:hidden;">
+                        <span style="font-size:0.6em;padding:2px;border:1px solid #06C;color:#06C;float:right;line-height:1em;">推广</span>{{bottom_ad.text}}</h3>
+             </div>
+            {% /if %}
+            <div id='echo' style="display:none">{{font_size}}</div>
+        </article>
+        </div>
+        </div>
+        {% if vote %}
+        <style>
+        .vote_time{
+                font-size: 12px;
+                color: #000000;
+                height: 12px;
+                width: auto;
+                margin-right: auto;
+                margin-left: auto;
+          }
+        .textLeft{
+            font-size: 12px;
+            color: #000000;
+            margin-right: 0px;
+            height: 12px;
+            width: auto ;
+            float:left;
+        }
+        .textRight{
+                font-size: 12px;
+                color: #000000;
+                height: 12px;
+                width: auto;
+                float: right;
+                margin:0px ;
+        }
+        </style>
+        <section>
+           <div class="vote_div">相关投票</div>
+           <p class = "vote_div">{{voteTitle}}</p>
+           <div style='width:98%;margin:0 auto'>
+               {% for co in voteitem %}
+               <div id='item_{{co.id}}' class='vote_btn' onclick='v(1)'>{{co.id}}. {{co.name}}</div>
+               <div id='r_{{co.id}}' style='margin:5px;line-height: 10px;height: 10px;display:none'>
+                   <div id='bar_{{co.id}}' style='margin:0px;width:0;height: 10px;float:left'></div>
+                   <span id='per_{{co.id}}' style='display:none;color:gray;font-size:10px'></span>
+               </div>
+               {% /for %}
+           </div>
+        </section>
+        {% /if %}
+        
+        <script type="text/javascript" charset="utf-8">
+            var origScale;
+            var minSize = 100;
+            var maxSize = 128;
+            var fontSize = document.getElementById('echo').innerHTML;
+            if(fontSize == "m") {minSize = 86; maxSize = 114;}
+            if(fontSize == "l") {minSize = 72; maxSize = 100;}
+            
+            function newHeight() {
+                return document.body.clientHeight;
+            }
+            function boxStart(event){
+                event.preventDefault();
+                origScale = parseInt(document.getElementById('newSize').style.webkitTextSizeAdjust, 10);
+                document.body.scroll="no";
+                //fontSize = document.getElementById('echo').innerHTML;
+            }
+            function boxChange(event){
+            }
+            function boxEnd(event){
+                event.preventDefault();
+                if(event.scale >0.8 && event.scale < 1.2) return;
+                if(event.scale < 1.0) size = origScale - 14;
+                if(event.scale > 1.0) size = origScale + 14;
+                if(size < minSize){
+                    document.getElementById('newSize').style.webkitTextSizeAdjust = minSize + '%';
+                    size = minSize;
+                } else if (size > maxSize) {
+                    document.getElementById('newSize').style.webkitTextSizeAdjust = maxSize + '%';
+                    size = maxSize;
+                } else {
+                    document.getElementById('newSize').style.webkitTextSizeAdjust = size + '%';
+                }
+                if(size == minSize) size = "s";
+                else if(size == maxSize) size = "l";
+                else size = "m";
+                document.getElementById('echo').innerHTML = size;
+                document.body.scroll="yes";           
+            }
+            </script>
+        
+          <script >
+              
+              function v(k){
+                  var color = new Array();
+                  color[0] = '#FF0000';
+                  color[1] = '#FF8000';
+                  color[2] = '#FFFF00';
+                  color[3] = '#00FF00';
+                  color[4] = '#00FFFF';
+                  color[5] = '#0000FF';
+                  color[6] = '#8000FF';
+                  
+                  $.ajax({
+                         type: 'GET',
+                         url: 'http://khd.qingdaonews.com/shoujikehuduan/interface_vote.php?',
+                         data: 'dopost=send&aid={{voteid}}&ismore=0&voteitem='+k,
+                         dataType: 'jsonp',
+                         jsonp: 'callback',
+                         success: function(json){
+                         $.each( json, function(i, n){
+                                $('#bar_'+i).css('background-color',color[i%6]);
+                                $('#r_'+i).show();
+                                $('#bar_'+i).animate({width:n.percent+'%'},30*n.percent);
+                                $('#per_'+i).html('&nbsp;'+Math.round(n.percent)+'%');
+                                $('#per_'+i).show(30*n.percent);
+                                $('#item_'+i).attr('onclick',null);
+                                $('#item_'+i).removeClass('vote_btn');
+                                document.location="voteid:{{voteid}}";
+                                });
+                         }
+                         }); 
+                         
+              }
+          </script>
+          <script language="javascript">
+              var div = document.getElementById("hh");
+              div.addEventListener('touchstart', function () {document.location="myweb:touch:start"});
+              div.addEventListener('touchend',function(){document.location="myweb:touch:end"});
+              div.addEventListener('touchmove',function(){
+                                   document.location="myweb:touch:move"});
+              </script>
+
+    </body>
+</html>

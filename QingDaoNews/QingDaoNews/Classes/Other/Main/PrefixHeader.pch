@@ -1,0 +1,49 @@
+//
+//  PrefixHeader.pch
+//  QingDaoNews
+//
+//  Created by cdk on 16/9/1.
+//  Copyright © 2016年 dwang. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "UIView+Extension.h"
+
+#import "DWNetworking.h"
+
+#import "MJExtension.h"
+
+#import "MJRefresh.h"
+
+#import "Masonry.h"
+
+//偏好设置
+#define DWUser_Defaults [NSUserDefaults standardUserDefaults]
+//Documents目录
+#define DWSearch_Path NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES)
+
+/** RGB */
+#define DWRGB(Rvalue,Gvalue,Bvalue,Avalue) [UIColor colorWithRed:Rvalue/255.00 green:Gvalue/255.00 blue:Bvalue/255.00 alpha:Avalue]
+
+/** 默认字体颜色 */
+#define DWTextColor [UIColor colorWithRed:105/255.0 green:102/255.0 blue:103/255.0 alpha:1]
+
+//获取屏幕 宽度、高度
+#define DWScreen_Frame [UIScreen mainScreen].bounds
+#define DWScreen_Width [UIScreen mainScreen].bounds.size.width
+#define DWScreen_Height [UIScreen mainScreen].bounds.size.height
+
+/** weekSelf */
+#define DWWeekSelf __unsafe_unretained __typeof(self) weekSelf = self;
+
+//如果有Debug这个宏的话,就允许log输出...可变参数
+#ifdef DEBUG
+#define DWLog(...) NSLog(__VA_ARGS__)
+#else
+#define DWLog(...)
+#endif
+
+
+#endif /* PrefixHeader_pch */

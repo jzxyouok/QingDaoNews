@@ -1,0 +1,151 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+.left{
+	float:left;	
+}
+
+.right{
+	float:right;	
+}
+
+.dblue{
+	color:#090909;
+}
+
+.blue{
+	color:#5884cb;
+}
+
+.mtext{
+    color:#363636;
+}
+
+.red{
+	color:#F00;	
+}
+
+.green{
+	color:#ff6600;
+}
+
+.orange{
+	color:#4987ba;
+}
+
+.grey{
+	color:#b2b1b0;
+}
+
+.bold{
+	font-weight:bold;
+	font-size:1.2em;
+}
+
+body{
+	background-color:#f0f0f0;
+	#padding:12px 16px;
+    font-size:100%;
+    line-height:150%;
+}
+body.night{
+	background-color:#1F2023;
+}
+body.night #title{color:#AEB8C5;}
+body.night #subtitle{color:#6A7581;}
+body.night article,body.night article p,body.night section{color:#798492; background-color:#1F2023}
+body.night header{border-bottom:#AEB8C5 1px solid;}
+body.night section div.post-head{background-image: url(content_title_background_night.png);}
+
+.mid-font{
+    font-size:1.2em;
+}
+
+.large-font{
+    font-size:1.4em;
+}
+
+.normal-font{
+    font-size:1.0em;
+}
+
+header{
+	padding-bottom:12px;
+	#border-bottom: #d8dddd 1px solid;
+    padding:12px 16px;
+}
+
+header p{
+	margin-bottom:12px;
+}
+
+a.btn{
+	/*display:inline-block;
+	padding:0 4px;
+	border:#cde7fa 1px solid;
+	text-decoration:none;*/
+}
+
+article{
+	margin:12px 0 24px 0;
+    padding:12px 16px;
+    line-height:150%;
+}
+
+article p{
+	margin-bottom:12px;
+	color:#505050;
+}
+
+article img{
+	display:block;
+	max-width:280px;
+	margin:4px auto 16px auto;	
+}
+
+section{
+	margin-bottom:16px;
+	background-color:#ffffff;
+}
+
+section div.post-head{
+    background-image: url(content_title_background.png);
+    background-position:top;
+    background-size:100% 36px;
+    background-repeat:no-repeat;
+    height:36px;
+    padding:7px 0px 12px 10px;
+}
+
+section div.post-content{
+	padding:8px 16px;
+}
+
+section div.post-oprt{
+	padding:8px 16px;
+    text-align:right;
+    font-size:0.8em;
+}
+
+.post-head{
+    padding:4px 8px 4px 0px;
+}
+
+@media screen and (-webkit-device-pixel-ratio: 2) {
+    section div.post-head{
+        background-image: url(content_title_background@2x.png);
+    }
+    body.night section div.post-head{
+        background-image: url(content_title_background_night@2x.png);
+    }
+}
+
+.img{
+max-width: 280px; 
+height:auto; 
+width:expression(this.width > 280 ? "280px" : this.width);
+}
+ 
+

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>message</key>
+		<string>我的评论/回复我的</string>
+		<key>function</key>
+		<string>消息</string>
+		<key>icon</key>
+		<string>head_image_infor@2x.png</string>
+	</dict>
+	<dict>
+		<key>function</key>
+		<string>爆料</string>
+		<key>icon</key>
+		<string>head_image_baoliao@2x.png</string>
+	</dict>
+	<dict>
+		<key>function</key>
+		<string>任务</string>
+		<key>icon</key>
+		<string>head_image_task@2x.png</string>
+	</dict>
+	<dict>
+		<key>function</key>
+		<string>收藏</string>
+		<key>icon</key>
+		<string>head_image_collect@2x.png</string>
+	</dict>
+	<dict>
+		<key>function</key>
+		<string>建议</string>
+		<key>icon</key>
+		<string>head_image_suggest@2x.png</string>
+	</dict>
+	<dict>
+		<key>function</key>
+		<string>生活</string>
+		<key>icon</key>
+		<string>head_image_life@2x.png</string>
+	</dict>
+	<dict>
+		<key>function</key>
+		<string>夜间</string>
+		<key>icon</key>
+		<string>head_image_night@2x.png</string>
+	</dict>
+	<dict>
+		<key>function</key>
+		<string>更多</string>
+		<key>icon</key>
+		<string>head_image_more@2x.png</string>
+	</dict>
+</array>
+</plist>

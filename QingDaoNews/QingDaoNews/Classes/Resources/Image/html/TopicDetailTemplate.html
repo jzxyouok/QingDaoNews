@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<!--技术支持：青岛新闻网 设计制作：小极 2010.3.21-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>青岛新闻网社区 - 青岛新闻网</title>
+<style type="text/css">
+/*初始化标签*/
+
+body{font:14px "宋体",Arial; color:#515050; <!-- font-setting --> margin:0;padding:0;background: url("bg.gif") top center repeat-x #f0fffd;}
+ol,ul,li,dt,dd,dl{list-style:none;}
+img{border:0;}
+select,input{vertical-align:middle;}
+a:link,a:visited{ font-family:"宋体",Arial;color:#000;text-decoration:none;}
+a:hover,a:active{color:#f00;text-decoration:underline;}
+input,button{cursor:pointer;}
+/*全局通用*/
+
+/* 颜色属性 */
+.cRed,a.cRed,a.cRed:visited{color:#ff0000;}
+.cBlue,a.cBlue,a.cBlue:visited{color:#28638e;}
+.cDRed,a.cDRed,a.cDRed:visited{color:#bc2931;}
+.cGray,a.cGray,a.cGray:visited{color: #929292;}
+.cDGray,a.cDGray,a.cDGray:visited{color: #666666;}
+.cWhite,a.cWhite,a.cWhite:visited{color:#ffffff;}
+.cBlack,a.cBlack,a.cBlack:visited{color:#000000;}
+.cGreen,a.cGreen,a.cGreen:visited{color:#007b26;}
+.cYellow,a.cYellow,a.cYellow:visited{color:#ff4e00;}
+/* 字体属性 */
+.fb{font-weight:bold;}
+/* 字体大小*/
+.f10{<!-- font-table-setting-1 -->}
+.f11{<!-- font-table-setting-2 -->}
+/*浮动*/
+.left{float:left;}
+.right{float:right;}
+/*线*/
+div.hr{ height:1px; margin:5px 0; padding:0;border-bottom:#ccc dotted 1px;overflow:hidden;}
+div.hr hr{ display:none;}
+.dot{border-left:#ccc dotted 1px;overflow:hidden;}
+.bb{border-bottom:#d8dcdc solid 1px;overflow:hidden;}
+.bt{border-top:#f7fbfa solid 1px;overflow:hidden;}
+.blr{border-left:#b5e0c0 solid 1px;border-right:#b5e0c0 solid 1px;overflow:hidden;}
+
+.mt10{ margin-top:10px;}
+.mr10{ margin-right:10px;}
+.mb10{ margin-bottom:10px;}
+.ml10{ margin-left:10px;}
+.pt10{ padding-top:10px;}
+.pr15{ padding-right:15px;}
+.pr10{ padding-right:10px;}
+.pb10{ padding-bottom:10px;}
+.pl15{ padding-left:15px;}
+.pl10{ padding-left:10px;}
+.p10{ padding:10px;}
+/*新闻列表*/
+ul.newslist12px,ul.newslist14px{}
+ul.newslist12px li,ul.newslist12px li a{font-size:12px;line-height:23px;}
+ul.newslist14px li,ul.newslist14px li a{font-size:14px;line-height:24px;}
+</style>
+
+    <script language="javascript">document.ontouchstart=function(){document.location="myweb:touch:start";}; document.ontouchend=function(){document.location="myweb:touch:end";}; document.ontouchmove=function(){document.location="myweb:touch:move";}</script>
+    
+</head>
+<body>
+		<div id = "newSize" style="-webkit-text-size-adjust:100%" ongesturestart="boxStart(event)" ongesturechange="boxChange(event)" ongestureend="boxEnd(event)">
+<!-- content -->
+        </div>
+        <div id='echo' style="display:none"><!-- FONTSIZE --></div>
+    <script type="text/javascript"  charset="utf-8">
+		var origScale;
+		var minSize = 100;
+		var maxSize = 128;
+        var fontSize = document.getElementById('echo').innerHTML;
+        if(fontSize == "m") {minSize = 86; maxSize = 114;}
+        if(fontSize == "l") {minSize = 72; maxSize = 100;}
+        
+		function newHeight() {
+            return document.body.clientHeight;
+		}
+		function boxStart(event){
+            event.preventDefault();
+            origScale = parseInt(document.getElementById('newSize').style.webkitTextSizeAdjust, 10);
+            document.body.scroll="no";
+            //fontSize = document.getElementById('echo').innerHTML;
+		}
+        function boxChange(event){
+            
+        }
+        function boxEnd(event){
+            event.preventDefault();
+            if(event.scale >0.8 && event.scale < 1.2) return;
+            if(event.scale < 1.0) size = origScale - 14;
+            if(event.scale > 1.0) size = origScale + 14;
+            if(size < minSize){
+                document.getElementById('newSize').style.webkitTextSizeAdjust = minSize + '%';
+                size = minSize;
+            } else if (size > maxSize) {
+                document.getElementById('newSize').style.webkitTextSizeAdjust = maxSize + '%';
+                size = maxSize;
+            } else {
+                document.getElementById('newSize').style.webkitTextSizeAdjust = size + '%';
+            }
+            if(size == minSize) size = "s";
+            else if(size == maxSize) size = "l";
+            else size = "m";
+            document.getElementById('echo').innerHTML = size;
+            document.body.scroll="yes";
+		}
+        
+		</script>
+</body>
+</html>

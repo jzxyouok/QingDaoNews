@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width,user-scalable=no"/>
+<meta name="description"/>
+<meta name="format-detection" content="telephone=no">
+<title>青青岛社区</title>
+<link href="images/styleWap.css" rel="stylesheet" type="text/css">
+</head>
+<body class="{{theme}} {{font_setting}}">
+<div class="g-box-1">
+  {% if html.master.title %}
+  <h2>{{html.master.title}}</h2>
+  <!--楼主 s-->
+  <div class="g-box-2">
+    <div class="m-user"><img src="{{html.master.face}}" class="m-pic-1"/><strong>楼主：{{html.master.master}}</strong><span><i>{{html.master.state}}</i>{{html.master.create_at}}</span></div>
+  </div>
+  {% else %}
+    <h2>对不起，您要查看的帖子不存在。</h2>
+  {% /if %}
+  <div class="m-tex">
+    {% if html.master.main %}
+    {{html.master.main}}
+    {% /if %}
+  </div>
+  <!--楼主 s-->
+  {% if board %}
+  <!--板块超链 s-->
+  <div class="g-box-3"><img src="{{board.board_logo}}"/><strong>{{board.board_name}}<br>
+    <span class="f-fc-1">{{board.board_describe}}</span> </strong><a href="/board/{{board.board_id}}/{{board.board_name}}" class="f-fc-2">进入论坛</a></div>
+  <!--板块超链 e-->
+  {% /if %}
+  {% for post in html.posts %}
+  <div class="g-box-4"> <strong class="m-tit"><a href="/reply/{{post.author}}"><img src="images/ico-ft.png"/></a>{{post.floor}}楼 {{post.author}}</strong>
+    <div class="m-tex-2">
+      {{post.content}}
+    </div>
+  </div>
+  {% /for %}
+  <!--分页符-->
+  <div class="m-pag"><div class="m-go"><input type="number" min="1" max="{{page_total}}" class="u-ipt-1" id="jumppage"><em class="m-fc-2">页</em><i class="u-btn-1" onclick="jump(document.getElementById('jumppage').value)">确定</i></div> <a href="/prev" {%if page = 1%}class="sel" onclick="javascript:;"{% /if%}>上一页</a> <span>{{page}}/{{page_total}}</span> <a href="/next" {%if page = page_total%}class="sel" onclick="javascript:;"{% /if%}>下一页</a>
+  
+  </div>
+</div>
+    <script type="text/javascript">
+        function jump(num){
+            location.href="/jump/" + num;
+        }
+    </script>
+</body>
+</html>
